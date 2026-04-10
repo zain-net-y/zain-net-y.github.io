@@ -3,94 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>منصة يمن تمكين</title>
+    <title>منصتي الاجتماعبة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-color: #2c3e50; --accent-color: #e74c3c; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; color: #333; }
-        
-        /* الهيدر - Header */
-        header { background: var(--primary-color); color: white; padding: 20px; text-align: center; shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        nav { background: #34495e; padding: 10px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-size: 14px; }
+        :root {
+            --fb-bg: #18191a;
+            --fb-card: #242526;
+            --fb-hover: #3a3b3c;
+            --fb-blue: #2d88ff;
+            --fb-text: #e4e6eb;
+            --fb-text-dim: #b0b3b8;
+        }
 
-        .main-container { display: flex; flex-wrap: wrap; max-width: 1100px; margin: 20px auto; padding: 10px; gap: 20px; }
-        
-        /* منطقة المقالات */
-        .content { flex: 3; min-width: 300px; }
-        .post-card { background: white; margin-bottom: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .post-content { padding: 20px; }
-        .post-title { font-size: 22px; color: var(--primary-color); margin-top: 0; }
-        
-        /* السايد بار - Sidebar */
-        .sidebar { flex: 1; min-width: 280px; }
-        .widget { background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .widget-title { border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; margin-bottom: 15px; font-size: 18px; }
+        body {
+            background-color: var(--fb-bg);
+            color: var(--fb-text);
+            font-family: 'Segoe UI', 'Tajawal', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
 
-        /* أماكن الإعلانات */
-        .ad-slot { background: #fdfdfd; border: 1px dashed #ccc; text-align: center; padding: 10px; margin: 10px 0; color: #999; font-size: 12px; }
+        /* الشريط العلوي */
+        header {
+            background-color: var(--fb-card);
+            height: 56px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #3e4042;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-        @media (max-width: 768px) { .main-container { flex-direction: column; } }
+        .logo { color: var(--fb-blue); font-size: 2.2rem; font-weight: bold; text-decoration: none; }
+
+        .search-bar {
+            background-color: var(--fb-hover);
+            border-radius: 50px;
+            padding: 8px 15px;
+            width: 250px;
+            color: var(--fb-text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* التصميم الرئيسي */
+        .main-container {
+            display: grid;
+            grid-template-columns: 25% 50% 25%;
+            padding: 15px;
+            gap: 15px;
+            height: calc(100vh - 56px);
+        }
+
+        /* الجوانب */
+        .sidebar { padding: 10px; }
+        .sidebar-item {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar-item:hover { background-color: var(--fb-hover); }
+
+        /* منطقة التدوين (المنشورات) */
+        .feed { overflow-y: auto; padding: 0 10px; }
+        
+        /* صندوق إنشاء منشور */
+        .create-post {
+            background: var(--fb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .input-box {
+            background: var(--fb-hover);
+            border-radius: 20px;
+            padding: 10px 15px;
+            color: var(--fb-text-dim);
+            cursor: pointer;
+        }
+
+        /* بطاقة المنشور */
+        .post {
+            background: var(--fb-card);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .avatar { width: 40px; height: 40px; background: var(--fb-blue); border-radius: 50%; }
+        .post-author { font-weight: bold; }
+        .post-time { font-size: 0.8rem; color: var(--fb-text-dim); }
+        .post-content { line-height: 1.5; margin-bottom: 15px; }
+
+        .post-actions {
+            border-top: 1px solid var(--fb-hover);
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-around;
+            color: var(--fb-text-dim);
+            font-weight: bold;
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 100%; }
+            .sidebar-left, .sidebar-right { display: none; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>    منصة زين العابدين المحبشي</h1>
-    <p>أحدث الأخبار والمقالات التقنية</p>
-</header>
+    <header>
+        <a href="#" class="logo">f</a>
+        <div class="search-bar">بحث في منصتي...</div>
+        <div style="width: 40px; height: 40px; background: var(--fb-hover); border-radius: 50%;"></div>
+    </header>
 
-<nav>
-    <a href="#">الرئيسية</a>
-    <a href="#">سياسة الخصوصية</a>
-    <a href="#">اتصل بنا</a>
-</nav>
+    <div class="main-container">
+        <div class="sidebar sidebar-left">
+            <div class="sidebar-item">👤 <b>اسم المستخدم</b></div>
+            <div class="sidebar-item">📁 مقالاتي</div>
+            <div class="sidebar-item">⭐ المفضلة</div>
+            <div class="sidebar-item">📅 الأرشيف</div>
+        </div>
 
-<div class="main-container">
-    
-    <main class="content">
-        <div class="ad-slot">
-            <p>إعلان بانر (728x90)</p>
-            </div>
-
-        <article class="post-card">
-            <div class="post-content">
-                <h2 class="post-title">كيفية إنشاء مدونة ناجحة في 2026</h2>
-                <p>هنا تكتب تفاصيل المقال الأول. المحتوى هو الملك، حاول دائماً كتابة مواضيع يبحث عنها الناس لزيادة زيارات موقعك وبالتالي زيادة أرباحك من إعلانات أدسيرا.</p>
-                <button style="background:var(--accent-color); color:white; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;">إقرأ المزيد</button>
-            </div>
-        </article>
-
-        <article class="post-card">
-            <div class="post-content">
-                <h2 class="post-title">أفضل طرق الربح من الإنترنت للمبتدئين</h2>
-                <p>تعتبر الإعلانات من أسهل الطرق للبدء، خاصة مع شركات مثل Adsterra التي تقبل المواقع بسرعة...</p>
-            </div>
-        </article>
-    </main>
-
-    <aside class="sidebar">
-        <div class="widget">
-            <h3 class="widget-title">إعلان جانبي</h3>
-            <div class="ad-slot" style="min-height: 250px;">
-                <p>إعلان (300x250)</p>
+        <div class="feed">
+            <div class="create-post">
+                <div class="post-header">
+                    <div class="avatar"></div>
+                    <div class="input-box" style="flex: 1;">بماذا تفكر يا بطل؟</div>
                 </div>
+            </div>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="avatar" style="background: #e91e63;"></div>
+                    <div>
+                        <div class="post-author">برمجة وتطوير</div>
+                        <div class="post-time">منذ 3 ساعات</div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    هذا هو المنشور الأول على منصتي الجديدة. التصميم مستوحى من فيسبوك ليعطي شعوراً بالألفة وسهولة الاستخدام. ما رأيكم؟
+                </div>
+                <div class="post-actions">
+                    <span>👍 إعجاب</span>
+                    <span>💬 تعليق</span>
+                    <span>🔗 مشاركة</span>
+                </div>
+            </article>
+
+            <article class="post">
+                <div class="post-header">
+                    <div class="avatar" style="background: #4caf50;"></div>
+                    <div>
+                        <div class="post-author">تحديثات التقنية</div>
+                        <div class="post-time">منذ يوم</div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    تعلم كيف تبني مستقبلك البرمجي باستخدام GitHub و Jekyll.. الخطوات سهلة والنتائج مذهلة!
+                </div>
+                <div class="post-actions">
+                    <span>👍 إعجاب</span>
+                    <span>💬 تعليق</span>
+                    <span>🔗 مشاركة</span>
+                </div>
+            </article>
         </div>
 
-        <div class="widget">
-            <h3 class="widget-title">أهم الأقسام</h3>
-            <ul style="list-style: none; padding: 0;">
-                <li><a href="#" style="text-decoration:none; color:#555;">• أخبار التقنية</a></li>
-                <li><a href="#" style="text-decoration:none; color:#555;">• شروحات برمجية</a></li>
-                <li><a href="#" style="text-decoration:none; color:#555;">• الربح من الموقع</a></li>
-            </ul>
+        <div class="sidebar sidebar-right">
+            <h4 style="color: var(--fb-text-dim); margin-bottom: 10px;">روابط سريعة</h4>
+            <div class="sidebar-item">🔗 GitHub Profile</div>
+            <div class="sidebar-item">☕ اشترِ لي قهوة</div>
         </div>
-    </aside>
-
-</div>
-
-<footer style="background:#2c3e50; color:white; text-align:center; padding:20px; margin-top:20px;">
-    <p>جميع الحقوق محفوظة © 2026 - مدونة اليمن تمكين</p>
-</footer>
+    </div>
 
 </body>
 </html>
