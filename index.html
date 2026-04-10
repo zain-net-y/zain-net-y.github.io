@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدونة اليمن تمكين</title>
+    <style>
+        :root { --primary-color: #2c3e50; --accent-color: #e74c3c; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; color: #333; }
+        
+        /* الهيدر - Header */
+        header { background: var(--primary-color); color: white; padding: 20px; text-align: center; shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav { background: #34495e; padding: 10px; text-align: center; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-size: 14px; }
+
+        .main-container { display: flex; flex-wrap: wrap; max-width: 1100px; margin: 20px auto; padding: 10px; gap: 20px; }
+        
+        /* منطقة المقالات */
+        .content { flex: 3; min-width: 300px; }
+        .post-card { background: white; margin-bottom: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .post-content { padding: 20px; }
+        .post-title { font-size: 22px; color: var(--primary-color); margin-top: 0; }
+        
+        /* السايد بار - Sidebar */
+        .sidebar { flex: 1; min-width: 280px; }
+        .widget { background: white; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .widget-title { border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; margin-bottom: 15px; font-size: 18px; }
+
+        /* أماكن الإعلانات */
+        .ad-slot { background: #fdfdfd; border: 1px dashed #ccc; text-align: center; padding: 10px; margin: 10px 0; color: #999; font-size: 12px; }
+
+        @media (max-width: 768px) { .main-container { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>مدونة اليمن تمكين</h1>
+    <p>أحدث الأخبار والمقالات التقنية</p>
+</header>
+
+<nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">سياسة الخصوصية</a>
+    <a href="#">اتصل بنا</a>
+</nav>
+
+<div class="main-container">
+    
+    <main class="content">
+        <div class="ad-slot">
+            <p>إعلان بانر (728x90)</p>
+            </div>
+
+        <article class="post-card">
+            <div class="post-content">
+                <h2 class="post-title">كيفية إنشاء مدونة ناجحة في 2026</h2>
+                <p>هنا تكتب تفاصيل المقال الأول. المحتوى هو الملك، حاول دائماً كتابة مواضيع يبحث عنها الناس لزيادة زيارات موقعك وبالتالي زيادة أرباحك من إعلانات أدسيرا.</p>
+                <button style="background:var(--accent-color); color:white; border:none; padding:8px 15px; border-radius:4px; cursor:pointer;">إقرأ المزيد</button>
+            </div>
+        </article>
+
+        <article class="post-card">
+            <div class="post-content">
+                <h2 class="post-title">أفضل طرق الربح من الإنترنت للمبتدئين</h2>
+                <p>تعتبر الإعلانات من أسهل الطرق للبدء، خاصة مع شركات مثل Adsterra التي تقبل المواقع بسرعة...</p>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <div class="widget">
+            <h3 class="widget-title">إعلان جانبي</h3>
+            <div class="ad-slot" style="min-height: 250px;">
+                <p>إعلان (300x250)</p>
+                </div>
+        </div>
+
+        <div class="widget">
+            <h3 class="widget-title">أهم الأقسام</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li><a href="#" style="text-decoration:none; color:#555;">• أخبار التقنية</a></li>
+                <li><a href="#" style="text-decoration:none; color:#555;">• شروحات برمجية</a></li>
+                <li><a href="#" style="text-decoration:none; color:#555;">• الربح من الموقع</a></li>
+            </ul>
+        </div>
+    </aside>
+
+</div>
+
+<footer style="background:#2c3e50; color:white; text-align:center; padding:20px; margin-top:20px;">
+    <p>جميع الحقوق محفوظة © 2026 - مدونة اليمن تمكين</p>
+</footer>
+
+</body>
+</html>
