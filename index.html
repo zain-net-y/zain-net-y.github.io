@@ -1,96 +1,115 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة زين العابدين المحبشي | يمن تمكين</title>
-    
+    <title>منصة يمن تمكين | زين العابدين المحبشي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root { --primary: #00d2ff; --accent: #9d50bb; --dark-bg: #0a0a0a; --card-bg: #161616; }
-        body { font-family: 'Tajawal', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; }
-        header { padding: 40px 20px; text-align: center; background: linear-gradient(to bottom, #1a1a2e, var(--dark-bg)); border-bottom: 1px solid #222; }
-        .logo-box { width: 80px; height: 80px; margin: 0 auto 15px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; background: #000; box-shadow: 0 0 20px rgba(0, 210, 255, 0.3); }
-        .logo-box i { font-size: 35px; color: var(--primary); }
-        .main-container { max-width: 700px; margin: 20px auto; padding: 0 15px; }
+        body { font-family: 'Tajawal', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; scroll-behavior: smooth; }
         
-        /* مكان الإعلان */
-        .ad-slot { background: #111; margin: 20px 0; text-align: center; border-radius: 10px; overflow: hidden; min-height: 90px; border: 1px dashed #333; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #444; }
+        header { padding: 30px 20px; text-align: center; background: #000; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
+        .logo-box { width: 60px; height: 60px; margin: 0 auto 10px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        
+        .main-container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
 
-        .article-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 30px; border: 1px solid #222; transition: 0.3s; }
-        .article-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .article-img { width: 100%; height: 250px; object-fit: cover; background: #222; }
+        /* قائمة المقالات */
+        .article-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; cursor: pointer; transition: 0.3s; }
+        .article-card:hover { border-color: var(--primary); transform: scale(1.01); }
+        .article-img { width: 100%; height: 200px; object-fit: cover; }
         .article-content { padding: 20px; }
-        .article-title { font-family: 'Cairo', sans-serif; font-size: 20px; margin: 10px 0; color: #fff; text-decoration: none; display: block; }
-        .article-excerpt { font-size: 14px; color: #b0b0b0; line-height: 1.7; }
-        .loading { text-align: center; padding: 100px 20px; color: var(--primary); }
+        .article-title { font-family: 'Cairo', sans-serif; font-size: 18px; margin: 0; color: #fff; }
+
+        /* صفحة المقال المنفرد */
+        #single-post { display: none; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .btn-back { background: var(--primary); color: #000; padding: 8px 20px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; }
+        .full-post-img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+        .full-post-content { line-height: 1.8; color: #ccc; font-size: 17px; }
+        .full-post-content img { max-width: 100%; height: auto; border-radius: 10px; }
+
+        .loading { text-align: center; padding: 100px; color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-box"><i class="fas fa-bolt"></i></div>
-        <h1 style="font-family:'Cairo'; font-size:24px; margin:0;">منصة يمن تمكين</h1>
-        <p style="color:var(--primary); font-size:13px; margin-top:5px;">بوابة زين العابدين المحبشي الرقمية</p>
+    <header onclick="showHome()">
+        <div class="logo-box"><i class="fas fa-bolt" style="color: var(--primary); font-size: 25px;"></i></div>
+        <h1 style="font-family:'Cairo'; font-size:20px; margin:0;">يمن تمكين</h1>
     </header>
 
     <div class="main-container">
-        
-        <div class="ad-slot">
-            إعلان هيدر (ضع كود أدستيرا هنا)
+        <div id="posts-list">
+            <div class="loading">جاري تحميل المحتوى...</div>
         </div>
 
-        <div id="blogger-posts">
-            <div class="loading">جاري جلب المقالات...</div>
+        <div id="single-post">
+            <button class="btn-back" onclick="showHome()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+            <h1 id="post-title" style="font-family:'Cairo'; color: var(--primary);"></h1>
+            <img id="post-image" class="full-post-img" src="" alt="">
+            <div id="post-body" class="full-post-content"></div>
         </div>
-
-        <div class="ad-slot">
-            إعلان سفلي (ضع كود أدستيرا هنا)
-        </div>
-
     </div>
 
     <script>
-        const blogUrl = 'https://nabacom1.blogspot.com'; 
+        const blogUrl = 'https://nabacom1.blogspot.com';
+        let allPosts = [];
 
-        function displayPosts(data) {
-            const container = document.getElementById('blogger-posts');
-            container.innerHTML = '';
-            const posts = data.feed.entry;
-            if (posts) {
-                posts.forEach((post, index) => {
-                    let title = post.title.$t;
-                    let content = post.content ? post.content.$t : (post.summary ? post.summary.$t : "");
-                    let imgSrc = post.media$thumbnail ? post.media$thumbnail.url.replace('s72-c', 'w800') : "https://via.placeholder.com/800x400?text=Yemen+Tamkeen";
-                    let tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = content;
-                    let textOnly = tempDiv.innerText.substring(0, 150) + "...";
-                    let postLink = post.link.find(l => l.rel === 'alternate').href;
-
-                    const html = `
-                        <article class="article-card">
-                            <img src="${imgSrc}" class="article-img">
-                            <div class="article-content">
-                                <a href="${postLink}" target="_blank" class="article-title">${title}</a>
-                                <p class="article-excerpt">${textOnly}</p>
-                            </div>
-                        </article>
-                    `;
-                    container.innerHTML += html;
-
-                    // إضافة إعلان وسط المقالات (مثلاً بعد المقال الثاني)
-                    if (index === 1) {
-                        container.innerHTML += `<div class="ad-slot">إعلان وسط المحتوى (ضع كود أدستيرا هنا)</div>`;
-                    }
-                });
-            }
+        async function fetchPosts() {
+            const response = await fetch(`${blogUrl}/feeds/posts/default?alt=json`);
+            const data = await response.json();
+            allPosts = data.feed.entry;
+            renderList();
         }
 
-        const script = document.createElement('script');
-        script.src = `${blogUrl}/feeds/posts/default?alt=json-in-script&callback=displayPosts`;
-        document.body.appendChild(script);
+        function renderList() {
+            const listContainer = document.getElementById('posts-list');
+            listContainer.innerHTML = '';
+            
+            allPosts.forEach((post, index) => {
+                const title = post.title.$t;
+                const img = post.media$thumbnail ? post.media$thumbnail.url.replace('s72-c', 'w800') : 'https://via.placeholder.com/800x400';
+                
+                listContainer.innerHTML += `
+                    <div class="article-card" onclick="showPost(${index})">
+                        <img src="${img}" class="article-img">
+                        <div class="article-content">
+                            <h2 class="article-title">${title}</h2>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function showPost(index) {
+            const post = allPosts[index];
+            document.getElementById('posts-list').style.display = 'none';
+            document.getElementById('single-post').style.display = 'block';
+            
+            document.getElementById('post-title').innerText = post.title.$t;
+            document.getElementById('post-body').innerHTML = post.content.$t;
+            
+            // محاولة جلب صورة كبيرة للمقال
+            if(post.media$thumbnail) {
+                document.getElementById('post-image').src = post.media$thumbnail.url.replace('s72-c', 'w1600');
+                document.getElementById('post-image').style.display = 'block';
+            } else {
+                document.getElementById('post-image').style.display = 'none';
+            }
+            window.scrollTo(0,0);
+        }
+
+        function showHome() {
+            document.getElementById('posts-list').style.display = 'block';
+            document.getElementById('single-post').style.display = 'none';
+            window.scrollTo(0,0);
+        }
+
+        fetchPosts();
     </script>
+
 </body>
 </html>
