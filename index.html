@@ -4,171 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة زين العابدين المحبشي | يمن تمكين</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root { --primary: #00d2ff; --bg: #050505; --card: #121212; --text: #ffffff; --new-color: #ff3e3e; }
-        * { box-sizing: border-box; transition: all 0.3s ease; }
-        body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-top: 90px; padding-bottom: 80px; }
-
-        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px); padding: 15px 0; border-bottom: 2px solid var(--primary); text-align: center; }
-        .header-title { font-family: 'Cairo', sans-serif; font-size: 22px; margin: 0; color: #fff; }
-        .header-sub { color: var(--primary); font-size: 12px; font-weight: bold; }
-
+        :root { --primary: #00d2ff; --bg: #050505; --card: #121212; --text: #ffffff; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-top: 80px; }
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); padding: 15px 0; border-bottom: 2px solid var(--primary); text-align: center; cursor: pointer; }
         .container { max-width: 800px; margin: 0 auto; padding: 0 15px; }
 
-        /* ستايل علامة "جديد" */
-        .new-badge {
-            position: absolute; top: 15px; right: 15px;
-            background: var(--new-color); color: #fff;
-            padding: 5px 12px; border-radius: 8px;
-            font-size: 12px; font-weight: bold; z-index: 10;
-            animation: blink 1s infinite;
-            box-shadow: 0 0 10px rgba(255, 62, 62, 0.5);
-        }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        /* مساحات الإعلانات */
+        .ad-slot { background: #0f0f0f; border: 1px dashed #444; margin: 20px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #777; border-radius: 12px; overflow: hidden; }
 
-        .post-card { background: var(--card); border-radius: 20px; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; cursor: pointer; position: relative; }
-        .post-card:hover { transform: translateY(-8px); border-color: var(--primary); }
+        /* زر الذكاء الاصطناعي */
+        .ai-gold-btn { background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728); color: #000 !important; padding: 15px; border-radius: 12px; text-align: center; font-weight: 900; margin-bottom: 20px; display: block; text-decoration: none; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3); }
+        
+        /* كروت المقالات */
+        .post-card { background: var(--card); border-radius: 20px; overflow: hidden; margin-bottom: 30px; border: 1px solid #222; }
         .post-img { width: 100%; height: 230px; object-fit: cover; }
         .post-info { padding: 20px; }
         .meta { color: var(--primary); font-size: 12px; margin-bottom: 10px; display: flex; gap: 15px; }
-        .post-title { font-family: 'Cairo', sans-serif; font-size: 20px; margin: 0; line-height: 1.4; }
-
-        #article-view { display: none; animation: fadeIn 0.5s; }
+        
+        .read-more-btn { display: inline-block; margin-top: 15px; background: var(--primary); color: #000; padding: 10px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        
+        /* واجهة المقال المنفرد */
+        #article-view { display: none; animation: fadeIn 0.4s; padding-bottom: 60px; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .back-btn { color: var(--primary); cursor: pointer; margin-bottom: 20px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
-        .full-img { width: 100%; border-radius: 20px; margin: 20px 0; }
-        .content-text { font-size: 19px; line-height: 2; color: #ddd; white-space: pre-line; text-align: justify; }
-
-        .share-box { margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; }
-        .share-flex { display: flex; gap: 10px; margin-top: 15px; }
-        .share-btn { flex: 1; padding: 12px; border-radius: 10px; text-align: center; color: #fff; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .full-img { width: 100%; border-radius: 20px; margin: 15px 0; border: 1px solid #333; }
+        .content-text { font-size: 19px; line-height: 2.1; color: #ddd; white-space: pre-line; text-align: justify; }
         
-        .comments-section { margin-top: 40px; background: #fff; border-radius: 15px; padding: 10px; }
-
-        .bottom-bar { position: fixed; bottom: 15px; left: 15px; right: 15px; display: flex; gap: 10px; z-index: 3000; }
-        .c-link { flex: 1; padding: 14px; border-radius: 15px; text-align: center; color: #fff; text-decoration: none; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        
-        /* مكان الإعلان */
-        .ad-slot { background: #0f0f0f; border: 1px dashed #333; margin: 20px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #555; border-radius: 12px; }
+        .back-btn { background: #333; color: var(--primary); padding: 14px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 40px; font-weight: bold; cursor: pointer; border: 1px solid var(--primary); }
     </style>
 </head>
 <body>
 
 <header onclick="showHome()">
-    <div class="header-title">منصة زين العابدين المحبشي</div>
-    <div class="header-sub">يمن تمكين الرقمية</div>
+    <div style="font-family:'Cairo'; font-size: 24px;">منصة زين العابدين المحبشي</div>
+    <div style="color:var(--primary); font-size: 13px; font-weight: bold;">يمن تمكين الرقمية</div>
 </header>
 
 <div class="container">
-    <div id="main-list">
-        <div id="posts-container"></div>
+    <div id="home-page">
+        <a href="https://chatgpt.com" target="_blank" class="ai-gold-btn">
+            <i class="fas fa-robot"></i> استشر الذكاء الاصطناعي الآن
+        </a>
+
+        <div class="ad-slot">إعلان القائمة الرئيسية (Banner)</div>
+
+        <div id="posts-list"></div>
     </div>
 
     <div id="article-view">
-        <div class="back-btn" onclick="showHome()">
-            <i class="fas fa-arrow-right"></i> العودة للمقالات
-        </div>
-        <h1 id="f-title" style="font-family:'Cairo'; font-size:26px; color:var(--primary);"></h1>
+        <h1 id="f-title" style="font-family:'Cairo'; color:var(--primary); font-size: 28px; line-height: 1.4;"></h1>
         <div id="f-meta" class="meta"></div>
-        <div class="ad-slot">إعلان تحت العنوان</div>
+
+        <div class="ad-slot">إعلان تحت العنوان (اقرأ المزيد)</div>
+
         <img id="f-img" class="full-img">
+
+        <div class="ad-slot">إعلان وسط المقال</div>
+
         <div id="f-content" class="content-text"></div>
-        <div class="share-box">
-            <strong>شارك هذا المقال:</strong>
-            <div class="share-flex">
-                <a id="share-wa" target="_blank" class="share-btn" style="background:#25d366;"><i class="fab fa-whatsapp"></i> واتساب</a>
-                <a id="share-fb" target="_blank" class="share-btn" style="background:#1877f2;"><i class="fab fa-facebook-f"></i> فيسبوك</a>
-            </div>
-        </div>
-        <div class="comments-section">
-            <div class="fb-comments" data-href="" data-width="100%" data-nposts="5"></div>
+
+        <div class="ad-slot" style="min-height: 200px;">إعلان نهاية المقال (Native Ads)</div>
+        
+        <div class="back-btn" onclick="showHome()">
+            <i class="fas fa-home"></i> العودة للقائمة الرئيسية
         </div>
     </div>
 </div>
-
-<div class="bottom-bar">
-    <a href="https://wa.me/967716441767" class="c-link" style="background: #25d366;"><i class="fab fa-whatsapp"></i> واتساب</a>
-    <a href="https://www.facebook.com/share/17aUCCB1XS/" class="c-link" style="background: #1877f2;"><i class="fab fa-facebook-f"></i> فيسبوك</a>
-</div>
-
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v17.0"></script>
 
 <script>
     let articles = [];
 
-    // دالة لحساب هل المقال جديد (أقل من ساعة)
-    function isNew(postDate, postTime) {
+    async function fetchData() {
         try {
-            // تحويل التاريخ من 2026/04/11 إلى تنسيق يفهمه الجهاز
-            const dateParts = postDate.split('/');
-            const timeStr = postTime.replace('مساءً', 'PM').replace('صباحاً', 'AM');
-            const postDateTime = new Date(`${dateParts[0]}-${dateParts[1]}-${dateParts[2]} ${timeStr}`);
-            
-            const now = new Date();
-            const diffInMs = now - postDateTime;
-            const diffInHours = diffInMs / (1000 * 60 * 60);
-            
-            return diffInHours > 0 && diffInHours <= 1; // إذا كان بين 0 و 1 ساعة
-        } catch (e) { return false; }
+            const res = await fetch('data.json?v=' + Date.now());
+            articles = await res.json();
+            articles.reverse(); // لظهور الأحدث أولاً
+            render();
+        } catch (e) {
+            document.getElementById('posts-list').innerHTML = "<p style='text-align:center;'>يرجى رفع ملف data.json</p>";
+        }
     }
 
-    async function loadData() {
-        const response = await fetch('data.json?v=' + Date.now());
-        articles = await response.json();
-        articles.reverse();
-        renderList();
-    }
-
-    function renderList() {
-        const container = document.getElementById('posts-container');
-        container.innerHTML = '';
-        articles.forEach((post, index) => {
-            const showBadge = isNew(post.date, post.time) ? '<div class="new-badge">جديد ✨</div>' : '';
-            
-            container.innerHTML += `
-                <div class="post-card" onclick="openPost(${index})">
-                    ${showBadge}
+    function render() {
+        const list = document.getElementById('posts-list');
+        list.innerHTML = '';
+        articles.forEach((post, i) => {
+            list.innerHTML += `
+                <div class="post-card">
                     <img src="${post.image}" class="post-img">
                     <div class="post-info">
                         <div class="meta">
                             <span><i class="far fa-calendar-alt"></i> ${post.date}</span>
-                            <span><i class="far fa-clock"></i> ${post.time}</span>
+                            <span><i class="far fa-clock"></i> ${post.time || ''}</span>
                         </div>
-                        <h2 class="post-title">${post.title}</h2>
+                        <h2 style="font-family:'Cairo'; font-size:22px; margin:0;">${post.title}</h2>
+                        <div class="read-more-btn" onclick="openPost(${i})">إقرأ المزيد</div>
                     </div>
                 </div>`;
         });
     }
 
-    function openPost(index) {
-        document.getElementById('main-list').style.display = 'none';
+    function openPost(idx) {
+        document.getElementById('home-page').style.display = 'none';
         document.getElementById('article-view').style.display = 'block';
-        const post = articles[index];
-        document.getElementById('f-title').innerText = post.title;
-        document.getElementById('f-meta').innerHTML = `<span><i class="far fa-calendar-alt"></i> ${post.date}</span> <span><i class="far fa-clock"></i> ${post.time}</span>`;
-        document.getElementById('f-img').src = post.image;
-        document.getElementById('f-content').innerText = post.content;
-        const pageUrl = "https://zain-net-y.github.io/#post-" + index;
-        document.getElementById('share-wa').href = `https://wa.me/?text=${encodeURIComponent(post.title + " " + pageUrl)}`;
-        document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
-        const fbC = document.querySelector('.fb-comments');
-        fbC.setAttribute('data-href', pageUrl);
-        if (typeof FB !== 'undefined') FB.XFBML.parse();
+        const p = articles[idx];
+        document.getElementById('f-title').innerText = p.title;
+        document.getElementById('f-meta').innerHTML = `<span><i class="far fa-calendar-alt"></i> ${p.date}</span> <span><i class="far fa-clock"></i> ${p.time || ''}</span>`;
+        document.getElementById('f-img').src = p.image;
+        document.getElementById('f-content').innerText = p.content;
         window.scrollTo(0,0);
     }
 
     function showHome() {
-        document.getElementById('main-list').style.display = 'block';
+        document.getElementById('home-page').style.display = 'block';
         document.getElementById('article-view').style.display = 'none';
         window.scrollTo(0,0);
     }
 
-    loadData();
+    fetchData();
 </script>
 </body>
 </html>
