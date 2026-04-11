@@ -4,112 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة يمن تمكين | زين العابدين المحبشي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
+    <title>منصة زين العابدين المحبشي | يمن تمكين</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root { --primary: #00d2ff; --accent: #9d50bb; --dark-bg: #0a0a0a; --card-bg: #161616; }
-        body { font-family: 'Tajawal', sans-serif; background-color: var(--dark-bg); color: white; margin: 0; scroll-behavior: smooth; }
+        :root { --primary: #00d2ff; --bg: #0a0a0a; --card: #161616; --text: #eeeeee; }
+        body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
         
-        header { padding: 30px 20px; text-align: center; background: #000; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
-        .logo-box { width: 60px; height: 60px; margin: 0 auto 10px; border-radius: 50%; border: 2px solid var(--primary); display: flex; align-items: center; justify-content: center; cursor: pointer; }
-        
-        .main-container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        header { padding: 40px 20px; text-align: center; background: #000; border-bottom: 2px solid var(--primary); }
+        .logo-text { font-family: 'Cairo', sans-serif; font-size: 24px; margin: 0; }
+        .sub-text { color: var(--primary); font-size: 14px; margin-top: 5px; }
 
-        /* قائمة المقالات */
-        .article-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; cursor: pointer; transition: 0.3s; }
-        .article-card:hover { border-color: var(--primary); transform: scale(1.01); }
-        .article-img { width: 100%; height: 200px; object-fit: cover; }
-        .article-content { padding: 20px; }
-        .article-title { font-family: 'Cairo', sans-serif; font-size: 18px; margin: 0; color: #fff; }
+        .container { max-width: 800px; margin: 20px auto; padding: 0 15px; }
 
-        /* صفحة المقال المنفرد */
-        #single-post { display: none; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .btn-back { background: var(--primary); color: #000; padding: 8px 20px; border-radius: 50px; border: none; font-weight: bold; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; }
-        .full-post-img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
-        .full-post-content { line-height: 1.8; color: #ccc; font-size: 17px; }
-        .full-post-content img { max-width: 100%; height: auto; border-radius: 10px; }
+        /* مكان الإعلانات */
+        .ad-space { background: #111; margin: 20px 0; text-align: center; border: 1px dashed #333; border-radius: 10px; min-height: 90px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 
-        .loading { text-align: center; padding: 100px; color: var(--primary); }
+        /* كروت المقالات */
+        .post-card { background: var(--card); border-radius: 15px; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; cursor: pointer; transition: 0.3s; }
+        .post-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .post-img { width: 100%; height: 220px; object-fit: cover; }
+        .post-info { padding: 20px; }
+        .post-title { font-family: 'Cairo', sans-serif; font-size: 19px; margin: 0; color: #fff; }
+        .read-more { color: var(--primary); font-weight: bold; font-size: 14px; margin-top: 15px; display: block; }
+
+        /* عرض المقال */
+        #article-view { display: none; }
+        .back-btn { background: var(--primary); color: #000; border: none; padding: 10px 25px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-bottom: 25px; display: inline-flex; align-items: center; gap: 8px; }
+        .full-img { width: 100%; border-radius: 15px; margin-bottom: 20px; }
+        .full-content { font-size: 18px; line-height: 1.8; color: #ccc; white-space: pre-line; }
     </style>
 </head>
 <body>
 
     <header onclick="showHome()">
-        <div class="logo-box"><i class="fas fa-bolt" style="color: var(--primary); font-size: 25px;"></i></div>
-        <h1 style="font-family:'Cairo'; font-size:20px; margin:0;">يمن تمكين</h1>
+        <h1 class="logo-text">منصة زين العابدين المحبشي</h1>
+        <div class="sub-text">يمن تمكين</div>
     </header>
 
-    <div class="main-container">
-        <div id="posts-list">
-            <div class="loading">جاري تحميل المحتوى...</div>
+    <div class="container">
+        
+        <div class="ad-space">
+            إعلان بانر
         </div>
 
-        <div id="single-post">
-            <button class="btn-back" onclick="showHome()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
-            <h1 id="post-title" style="font-family:'Cairo'; color: var(--primary);"></h1>
-            <img id="post-image" class="full-post-img" src="" alt="">
-            <div id="post-body" class="full-post-content"></div>
+        <div id="posts-container">
+            <p style="text-align:center;">جاري تحميل المقالات...</p>
         </div>
+
+        <div id="article-view">
+            <button class="back-btn" onclick="showHome()">
+                <i class="fas fa-arrow-right"></i> عودة للرئيسية
+            </button>
+            <h1 id="view-title" style="font-family:'Cairo'; color:var(--primary);"></h1>
+            <img id="view-img" class="full-img" src="">
+            <div id="view-body" class="full-content"></div>
+
+            <div class="ad-space" style="margin-top:30px;">
+                إعلانات مقترحة
+            </div>
+        </div>
+
     </div>
 
     <script>
-        const blogUrl = 'https://nabacom1.blogspot.com';
-        let allPosts = [];
+        let articlesData = [];
 
-        async function fetchPosts() {
-            const response = await fetch(`${blogUrl}/feeds/posts/default?alt=json`);
-            const data = await response.json();
-            allPosts = data.feed.entry;
-            renderList();
+        async function loadContent() {
+            try {
+                // جلب البيانات مع منع التخزين المؤقت لضمان التحديث الفوري
+                const response = await fetch('data.json?v=' + Math.random());
+                articlesData = await response.json();
+                displayList();
+            } catch (err) {
+                document.getElementById('posts-container').innerHTML = "<p style='text-align:center;'>تأكد من وجود ملف data.json</p>";
+            }
         }
 
-        function renderList() {
-            const listContainer = document.getElementById('posts-list');
-            listContainer.innerHTML = '';
-            
-            allPosts.forEach((post, index) => {
-                const title = post.title.$t;
-                const img = post.media$thumbnail ? post.media$thumbnail.url.replace('s72-c', 'w800') : 'https://via.placeholder.com/800x400';
-                
-                listContainer.innerHTML += `
-                    <div class="article-card" onclick="showPost(${index})">
-                        <img src="${img}" class="article-img">
-                        <div class="article-content">
-                            <h2 class="article-title">${title}</h2>
+        function displayList() {
+            const container = document.getElementById('posts-container');
+            container.innerHTML = '';
+            articlesData.forEach((item, i) => {
+                container.innerHTML += `
+                    <div class="post-card" onclick="openArticle(${i})">
+                        <img src="${item.image}" class="post-img">
+                        <div class="post-info">
+                            <h2 class="post-title">${item.title}</h2>
+                            <span class="read-more">إقرأ المزيد <i class="fas fa-chevron-left"></i></span>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
         }
 
-        function showPost(index) {
-            const post = allPosts[index];
-            document.getElementById('posts-list').style.display = 'none';
-            document.getElementById('single-post').style.display = 'block';
-            
-            document.getElementById('post-title').innerText = post.title.$t;
-            document.getElementById('post-body').innerHTML = post.content.$t;
-            
-            // محاولة جلب صورة كبيرة للمقال
-            if(post.media$thumbnail) {
-                document.getElementById('post-image').src = post.media$thumbnail.url.replace('s72-c', 'w1600');
-                document.getElementById('post-image').style.display = 'block';
-            } else {
-                document.getElementById('post-image').style.display = 'none';
-            }
-            window.scrollTo(0,0);
+        function openArticle(index) {
+            document.getElementById('posts-container').style.display = 'none';
+            document.getElementById('article-view').style.display = 'block';
+            const post = articlesData[index];
+            document.getElementById('view-title').innerText = post.title;
+            document.getElementById('view-img').src = post.image;
+            document.getElementById('view-body').innerText = post.content;
+            window.scrollTo(0, 0);
         }
 
         function showHome() {
-            document.getElementById('posts-list').style.display = 'block';
-            document.getElementById('single-post').style.display = 'none';
-            window.scrollTo(0,0);
+            document.getElementById('posts-container').style.display = 'block';
+            document.getElementById('article-view').style.display = 'none';
+            window.scrollTo(0, 0);
         }
 
-        fetchPosts();
+        loadContent();
     </script>
-
 </body>
 </html>
